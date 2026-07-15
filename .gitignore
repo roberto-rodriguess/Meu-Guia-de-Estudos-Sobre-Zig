@@ -1,0 +1,22 @@
+# Cache e Saídas do Zig
+.zig-cache/
+zig-out/
+
+# Executáveis e Binários Compilados (Windows/Unix/macOS)
+*.exe
+*.pdb
+*.dll
+*.lib
+*.obj
+*.o
+*.a
+*.so
+*.dylib
+
+# Configurações de IDEs (IntelliJ IDEA / CLion)
+.idea/
+*.iml
+
+# Outras configurações comuns (opcional)
+.DS_Store
+.vscode/
