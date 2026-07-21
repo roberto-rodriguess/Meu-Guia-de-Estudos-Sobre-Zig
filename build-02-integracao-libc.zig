@@ -7,7 +7,7 @@ pub fn build(b: *std.Build) void {
     const exe = b.addExecutable(.{
         .name = "exemplo_libc",
         .root_module = b.createModule(.{
-            .root_source_file = b.path("src/teste_integracao_com_c/teste_usando_a_libc3.zig"),
+            .root_source_file = b.path("src/teste_integracao_com_c/teste_usando_a_libc2.zig"),
             .target = target,
             .optimize = optimize,
             .link_libc = true,
