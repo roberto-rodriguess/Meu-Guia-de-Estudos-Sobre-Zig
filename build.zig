@@ -11,13 +11,17 @@ const build_08 = @import("build-08-teste_importando_c_sqlite3.zig");
 const build_09 = @import("build-09-importando_bibliotecas_c_externas.zig");
 const build_10 = @import("build-10-wrapping-funcao-c.zig");
 const build_11 = @import("build-11-trabalhando-com-structs-c.zig");
+const build_12 = @import("build-12-criando_wrappers_idiomaticos.zig");
+const build_13 = @import("build-13-recebendo-callbacks-c.zig");
+const build_14 = @import("build-14-padrao-arena-allocator-c.zig");
+const build_15 = @import("build-15-gerenciamento-memoria-fronteiras.zig");
 
 pub fn build(b: *std.Build) void {
-    // Permite selecionar qual exercício rodar. O padrão é o 11.
+    // Permite selecionar qual exercício rodar. O padrão é o 15.
     const exec_num = b.option(
         u32, "exercicio",
-        "Seleciona o build do exercicio (1-11)"
-    ) orelse 11;
+        "Seleciona o build do exercicio (1-15)"
+    ) orelse 14;
 
     switch (exec_num) {
         1 => build_01.build(b),
@@ -31,8 +35,12 @@ pub fn build(b: *std.Build) void {
         9 => build_09.build(b),
         10 => build_10.build(b),
         11 => build_11.build(b),
+        12 => build_12.build(b),
+        13 => build_13.build(b),
+        14 => build_14.build(b),
+        15 => build_15.build(b),
         else => {
-            std.debug.print("Exercício {d} inválido. Escolha de 1 a 11.\n", .{exec_num});
+            std.debug.print("Exercício {d} inválido. Escolha de 1 a 15.\n", .{exec_num});
         },
     }
 }

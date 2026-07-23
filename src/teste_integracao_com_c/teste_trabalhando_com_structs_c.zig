@@ -12,16 +12,16 @@ pub fn main() void {
     }
     defer c.point_destroy(p);
 
-    // Definir um nome para o ponto usando @memcpy (castando o array de i8/u8 do C)
-    const name_dest: []u8 = @ptrCast(p.*.name[0..9]);
-    @memcpy(name_dest, "Meu Ponto");
-
     // Acessar campos
     std.debug.print("Ponto: x = {}, y = {}\n", .{p.*.x, p.*.y});
 
     // Modificar
     c.point_move(p, 5, -3);
     std.debug.print("Após mover: x = {}, y = {}\n", .{p.*.x, p.*.y});
+
+    // Definir um nome para o ponto usando @memcpy (castando o array de i8/u8 do C)
+    const name_dest: []u8 = @ptrCast(p.*.name[0..9]);
+    @memcpy(name_dest, "Meu Ponto");
 
     // Acessar array (convertendo o array de C char para slice do Zig)
     const name_slice: []const u8 = @ptrCast(p.*.name[0..]);
