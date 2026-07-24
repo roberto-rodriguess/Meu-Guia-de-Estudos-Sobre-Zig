@@ -30,6 +30,7 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 * **`include/`**: Contém os arquivos de cabeçalho C (`.h`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h`, `clog.h` e a subpasta `curl/`.
 * **`include/lib/`**: Contém os arquivos de código-fonte C compilados nativamente (`sqlite3.c`).
 * **`lib/`**: Contém as bibliotecas externas do cURL para Windows MinGW (`libcurl.dll.a`, `libcurl.a`, etc.).
+* **`build_files/`**: Pasta que centraliza todos os scripts individuais de build numerados.
 
 ---
 
@@ -38,22 +39,22 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 O projeto possui um despachante dinâmico principal (`build.zig`) e vários arquivos de build numerados de acordo com o progresso dos estudos. Cada script configura uma parte específica do aprendizado:
 
 * **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 16).
-* **`build-01-testes-integracao.zig`**: Configura e roda os testes de integração do projeto.
-* **`build-02-integracao-libc.zig`**: Compila exemplos que ligam e chamam recursos da LibC.
-* **`build-03-usar-codigo-c-no-zig.zig`**: Traduz e compila arquivos `.c` e `.h` locais para serem importados no Zig.
-* **`build-04-exportar-zig-para-c.zig`**: Exporta uma biblioteca estática compilada em Zig para ser usada por um executável C.
-* **`build-05-executar-exercicios.zig`**: Registra passos individuais de execução para arquivos da pasta de exercícios.
-* **`build-06-instalar-exercicios.zig`**: Compila e copia os binários dos exercícios na pasta de saída `zig-out/`.
-* **`build-07-completo-exercicios-e-testes.zig`**: Integra todo o executável, testes de unidade e testes de integração em um só lugar.
-* **`build-08-teste_importando_c_sqlite3.zig`**: Exemplo básico de importação do cabeçalho do SQLite3.
-* **`build-09-importando_bibliotecas_c_externas.zig`**: Compila o código fonte C do SQLite3 (`sqlite3.c`) diretamente no projeto com suporte total do Zig.
-* **`build-10-wrapping-funcao-c.zig`**: Compila e executa o encapsulamento em Zig de chamadas FFI da biblioteca dinâmica externa do **cURL**.
-* **`build-11-trabalhando-com-structs-c.zig`**: Compilação e linkagem da biblioteca customizada local `mylib`.
-* **`build-12-criando_wrappers_idiomaticos.zig`**: Criação de wrappers orientados a objeto em Zig para structs do C.
-* **`build-13-recebendo-callbacks-c.zig`**: Demonstração de passagem e recebimento de ponteiros de função de progresso (Callbacks) do C em Zig.
-* **`build-14-padrao-arena-allocator-c.zig`**: Exemplo de alocação de memória usando padrão Arena Allocator em Zig com passagem para C.
-* **`build-15-gerenciamento-memoria-fronteiras.zig`**: Compilação e testes de limites/segurança de alocação de memória FFI.
-* **`build-16-wrapper_idiomatico_de_biblioteca_c.zig`**: Encapsulamento prático e isolamento completo de uma biblioteca de logs em C (`clog`) por baixo de uma API amigável em Zig.
+* **`build_files/build-01-testes-integracao.zig`**: Configura e roda os testes de integração do projeto.
+* **`build_files/build-02-integracao-libc.zig`**: Compila exemplos que ligam e chamam recursos da LibC.
+* **`build_files/build-03-usar-codigo-c-no-zig.zig`**: Traduz e compila arquivos `.c` e `.h` locais para serem importados no Zig.
+* **`build_files/build-04-exportar-zig-para-c.zig`**: Exporta uma biblioteca estática compilada em Zig para ser usada por um executável C.
+* **`build_files/build-05-executar-exercicios.zig`**: Registra passos individuais de execução para arquivos da pasta de exercícios.
+* **`build_files/build-06-instalar-exercicios.zig`**: Compila e copia os binários dos exercícios na pasta de saída `zig-out/`.
+* **`build_files/build-07-completo-exercicios-e-testes.zig`**: Integra todo o executável, testes de unidade e testes de integração em um só lugar.
+* **`build_files/build-08-teste_importando_c_sqlite3.zig`**: Exemplo básico de importação do cabeçalho do SQLite3.
+* **`build_files/build-09-importando_bibliotecas_c_externas.zig`**: Compila o código fonte C do SQLite3 (`sqlite3.c`) diretamente no projeto com suporte total do Zig.
+* **`build_files/build-10-wrapping-funcao-c.zig`**: Compila e executa o encapsulamento em Zig de chamadas FFI da biblioteca dinâmica externa do **cURL**.
+* **`build_files/build-11-trabalhando-com-structs-c.zig`**: Compilação e linkagem da biblioteca customizada local `mylib`.
+* **`build_files/build-12-criando_wrappers_idiomaticos.zig`**: Criação de wrappers orientados a objeto em Zig para structs do C.
+* **`build_files/build-13-recebendo-callbacks-c.zig`**: Demonstração de passagem e recebimento de ponteiros de função de progresso (Callbacks) do C em Zig.
+* **`build_files/build-14-padrao-arena-allocator-c.zig`**: Exemplo de alocação de memória usando padrão Arena Allocator em Zig com passagem para C.
+* **`build_files/build-15-gerenciamento-memoria-fronteiras.zig`**: Compilação e testes de limites/segurança de alocação de memória FFI.
+* **`build_files/build-16-wrapper_idiomatico_de_biblioteca_c.zig`**: Encapsulamento prático e isolamento completo de uma biblioteca de logs em C (`clog`) por baixo de uma API amigável em Zig.
 
 ### Como rodar:
 * Para rodar o exercício atual via roteador (padrão 16):
@@ -66,7 +67,7 @@ O projeto possui um despachante dinâmico principal (`build.zig`) e vários arqu
   ```
 * Para rodar um build diretamente via arquivo:
   ```powershell
-  zig build --build-file build-16-wrapper_idiomatico_de_biblioteca_c.zig run
+  zig build --build-file build_files/build-16-wrapper_idiomatico_de_biblioteca_c.zig run
   ```
 
 ---
