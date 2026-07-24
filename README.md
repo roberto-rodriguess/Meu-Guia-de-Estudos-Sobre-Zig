@@ -21,13 +21,13 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 9. **[teste_alocacao_de_memoria/](src/teste_alocacao_de_memoria)**: Alocação explícita na heap e gerenciamento manual de memória com diferentes alocadores.
 10. **[teste_testes/](src/teste_testes)** & **[tests/](tests)**: Escrita de testes de unidade e testes de integração nativos.
 11. **[teste_comptime/](src/teste_comptime)**: Execução de código em tempo de compilação, genéricos e introspecção.
-12. **[teste_integracao_com_c/](src/teste_integracao_com_c)**: FFI com a LibC, estruturação de dados em C, callbacks assíncronos, gerenciamento de memória em arena e wrappers idiomáticos do **SQLite3**, **cURL**, **Worker** e **Worker2**.
+12. **[teste_integracao_com_c/](src/teste_integracao_com_c)**: FFI com a LibC, estruturação de dados em C, callbacks assíncronos, gerenciamento de memória em arena e wrappers idiomáticos do **SQLite3**, **cURL**, **Worker**, **Worker2** e **clog**.
 13. **[teste_usando_codigo_c_em_zig/](src/teste_usando_codigo_c_em_zig)**: Compilação de código C híbrido e uso de translate-c.
 14. **[teste_exportando_funcoes_pra_c/](src/teste_exportando_funcoes_pra_c)**: Exportação de funções Zig para uso direto em códigos C.
 15. **[exercicios/](src/exercicios)**: Exercícios de aplicação e leitura/escrita de arquivos.
 
 ### 🌐 Pastas Globais para Bibliotecas C:
-* **`include/`**: Contém os arquivos de cabeçalho C (`.h`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h` e a subpasta `curl/`.
+* **`include/`**: Contém os arquivos de cabeçalho C (`.h`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h`, `clog.h` e a subpasta `curl/`.
 * **`include/lib/`**: Contém os arquivos de código-fonte C compilados nativamente (`sqlite3.c`).
 * **`lib/`**: Contém as bibliotecas externas do cURL para Windows MinGW (`libcurl.dll.a`, `libcurl.a`, etc.).
 
@@ -37,7 +37,7 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 
 O projeto possui um despachante dinâmico principal (`build.zig`) e vários arquivos de build numerados de acordo com o progresso dos estudos. Cada script configura uma parte específica do aprendizado:
 
-* **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 14).
+* **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 16).
 * **`build-01-testes-integracao.zig`**: Configura e roda os testes de integração do projeto.
 * **`build-02-integracao-libc.zig`**: Compila exemplos que ligam e chamam recursos da LibC.
 * **`build-03-usar-codigo-c-no-zig.zig`**: Traduz e compila arquivos `.c` e `.h` locais para serem importados no Zig.
@@ -52,19 +52,21 @@ O projeto possui um despachante dinâmico principal (`build.zig`) e vários arqu
 * **`build-12-criando_wrappers_idiomaticos.zig`**: Criação de wrappers orientados a objeto em Zig para structs do C.
 * **`build-13-recebendo-callbacks-c.zig`**: Demonstração de passagem e recebimento de ponteiros de função de progresso (Callbacks) do C em Zig.
 * **`build-14-padrao-arena-allocator-c.zig`**: Exemplo de alocação de memória usando padrão Arena Allocator em Zig com passagem para C.
+* **`build-15-gerenciamento-memoria-fronteiras.zig`**: Compilação e testes de limites/segurança de alocação de memória FFI.
+* **`build-16-wrapper_idiomatico_de_biblioteca_c.zig`**: Encapsulamento prático e isolamento completo de uma biblioteca de logs em C (`clog`) por baixo de uma API amigável em Zig.
 
 ### Como rodar:
-* Para rodar o exercício atual via roteador (padrão 14):
+* Para rodar o exercício atual via roteador (padrão 16):
   ```powershell
   zig build run
   ```
-* Para rodar um exercício específico (ex: exercício 12 ou 13):
+* Para rodar um exercício específico (ex: exercício 14 ou 15):
   ```powershell
-  zig build -Dexercicio=13 run
+  zig build -Dexercicio=15 run
   ```
 * Para rodar um build diretamente via arquivo:
   ```powershell
-  zig build --build-file build-14-padrao-arena-allocator-c.zig run
+  zig build --build-file build-16-wrapper_idiomatico_de_biblioteca_c.zig run
   ```
 
 ---

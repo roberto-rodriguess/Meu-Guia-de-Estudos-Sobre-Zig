@@ -15,13 +15,14 @@ const build_12 = @import("build-12-criando_wrappers_idiomaticos.zig");
 const build_13 = @import("build-13-recebendo-callbacks-c.zig");
 const build_14 = @import("build-14-padrao-arena-allocator-c.zig");
 const build_15 = @import("build-15-gerenciamento-memoria-fronteiras.zig");
+const build_16 = @import("build-16-wrapper_idiomatico_de_biblioteca_c.zig");
 
 pub fn build(b: *std.Build) void {
     // Permite selecionar qual exercício rodar. O padrão é o 15.
     const exec_num = b.option(
         u32, "exercicio",
         "Seleciona o build do exercicio (1-15)"
-    ) orelse 14;
+    ) orelse 16;
 
     switch (exec_num) {
         1 => build_01.build(b),
@@ -39,6 +40,7 @@ pub fn build(b: *std.Build) void {
         13 => build_13.build(b),
         14 => build_14.build(b),
         15 => build_15.build(b),
+        16 => build_16.build(b),
         else => {
             std.debug.print("Exercício {d} inválido. Escolha de 1 a 15.\n", .{exec_num});
         },
