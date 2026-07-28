@@ -16,13 +16,14 @@ const build_13 = @import("build_files/build-13-recebendo-callbacks-c.zig");
 const build_14 = @import("build_files/build-14-padrao-arena-allocator-c.zig");
 const build_15 = @import("build_files/build-15-gerenciamento-memoria-fronteiras.zig");
 const build_16 = @import("build_files/build-16-wrapper_idiomatico_de_biblioteca_c.zig");
+const build_17 = @import("build_files/build-17-biblioteca_c_em_um_projeto_zig.zig");
 
 pub fn build(b: *std.Build) void {
-    // Permite selecionar qual exercício rodar. O padrão é o 16.
+    // Permite selecionar qual exercício rodar. O padrão é o 17.
     const exec_num = b.option(
         u32, "exercicio",
-        "Seleciona o build do exercicio (1-16)"
-    ) orelse 16;
+        "Seleciona o build do exercicio (1-17)"
+    ) orelse 17;
 
     switch (exec_num) {
         1 => build_01.build(b),
@@ -41,8 +42,9 @@ pub fn build(b: *std.Build) void {
         14 => build_14.build(b),
         15 => build_15.build(b),
         16 => build_16.build(b),
+        17 => build_17.build(b),
         else => {
-            std.debug.print("Exercício {d} inválido. Escolha de 1 a 16.\n", .{exec_num});
+            std.debug.print("Exercício {d} inválido. Escolha de 1 a 17.\n", .{exec_num});
         },
     }
 }

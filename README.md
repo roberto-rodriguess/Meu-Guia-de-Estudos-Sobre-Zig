@@ -27,7 +27,7 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 15. **[exercicios/](src/exercicios)**: Exercícios de aplicação e leitura/escrita de arquivos.
 
 ### 🌐 Pastas Globais para Bibliotecas C:
-* **`include/`**: Contém os arquivos de cabeçalho C (`.h`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h`, `clog.h` e a subpasta `curl/`.
+* **`include/`**: Contém os arquivos de cabeçalho C (`.h`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h`, `clog.h`, `lib.h` e a subpasta `curl/`.
 * **`include/lib/`**: Contém os arquivos de código-fonte C compilados nativamente (`sqlite3.c`).
 * **`lib/`**: Contém as bibliotecas externas do cURL para Windows MinGW (`libcurl.dll.a`, `libcurl.a`, etc.).
 * **`build_files/`**: Pasta que centraliza todos os scripts individuais de build numerados.
@@ -38,7 +38,7 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 
 O projeto possui um despachante dinâmico principal (`build.zig`) e vários arquivos de build numerados de acordo com o progresso dos estudos. Cada script configura uma parte específica do aprendizado:
 
-* **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 16).
+* **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 17).
 * **`build_files/build-01-testes-integracao.zig`**: Configura e roda os testes de integração do projeto.
 * **`build_files/build-02-integracao-libc.zig`**: Compila exemplos que ligam e chamam recursos da LibC.
 * **`build_files/build-03-usar-codigo-c-no-zig.zig`**: Traduz e compila arquivos `.c` e `.h` locais para serem importados no Zig.
@@ -55,19 +55,20 @@ O projeto possui um despachante dinâmico principal (`build.zig`) e vários arqu
 * **`build_files/build-14-padrao-arena-allocator-c.zig`**: Exemplo de alocação de memória usando padrão Arena Allocator em Zig com passagem para C.
 * **`build_files/build-15-gerenciamento-memoria-fronteiras.zig`**: Compilação e testes de limites/segurança de alocação de memória FFI.
 * **`build_files/build-16-wrapper_idiomatico_de_biblioteca_c.zig`**: Encapsulamento prático e isolamento completo de uma biblioteca de logs em C (`clog`) por baixo de uma API amigável em Zig.
+* **`build_files/build-17-criando_um_wrapper_idiomatico.zig`**: Compilação de uma biblioteca estática em C (`lib.c`) e sua linkagem com o executável Zig correspondente.
 
 ### Como rodar:
-* Para rodar o exercício atual via roteador (padrão 16):
+* Para rodar o exercício atual via roteador (padrão 17):
   ```powershell
   zig build run
   ```
-* Para rodar um exercício específico (ex: exercício 14 ou 15):
+* Para rodar um exercício específico (ex: exercício 15 ou 16):
   ```powershell
-  zig build -Dexercicio=15 run
+  zig build -Dexercicio=16 run
   ```
 * Para rodar um build diretamente via arquivo:
   ```powershell
-  zig build --build-file build_files/build-16-wrapper_idiomatico_de_biblioteca_c.zig run
+  zig build --build-file build_files/build-17-criando_um_wrapper_idiomatico.zig run
   ```
 
 ---
