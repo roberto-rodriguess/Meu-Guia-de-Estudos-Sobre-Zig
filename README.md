@@ -2,7 +2,7 @@
 
 Este é um repositório dedicado aos meus estudos e experimentos práticos com a linguagem de programação **Zig** (utilizando a versão **0.16.0**).
 
-O objetivo deste projeto é documentar o meu aprendizado de forma didática, cobrindo desde a sintaxe mais básica e primitivos até conceitos avançados de gerenciamento de memória, metaprogramação (`comptime`) e integração com a linguagem C (FFI).
+O objetivo deste projeto é documentar o meu aprendizado de forma didática, cobrindo desde a sintaxe mais básica e primitivos até conceitos avançados de gerenciamento de memória, metaprogramação (`comptime`) e integração com a linguagem C (FFI) e C++.
 
 ---
 
@@ -21,13 +21,13 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 9. **[teste_alocacao_de_memoria/](src/teste_alocacao_de_memoria)**: Alocação explícita na heap e gerenciamento manual de memória com diferentes alocadores.
 10. **[teste_testes/](src/teste_testes)** & **[tests/](tests)**: Escrita de testes de unidade e testes de integração nativos.
 11. **[teste_comptime/](src/teste_comptime)**: Execução de código em tempo de compilação, genéricos e introspecção.
-12. **[teste_integracao_com_c/](src/teste_integracao_com_c)**: FFI com a LibC, estruturação de dados em C, callbacks assíncronos, gerenciamento de memória em arena e wrappers idiomáticos do **SQLite3**, **cURL**, **Worker**, **Worker2** e **clog**.
+12. **[teste_integracao_com_c_e_c_mais_mais/](src/teste_integracao_com_c_e_c_mais_mais)**: FFI com a LibC, estruturação de dados em C, callbacks assíncronos, gerenciamento de memória em arena, wrappers idiomáticos do **SQLite3**, **cURL**, **Worker**, **Worker2**, **clog** e integração com classes e objetos em **C++**.
 13. **[teste_usando_codigo_c_em_zig/](src/teste_usando_codigo_c_em_zig)**: Compilação de código C híbrido e uso de translate-c.
 14. **[teste_exportando_funcoes_pra_c/](src/teste_exportando_funcoes_pra_c)**: Exportação de funções Zig para uso direto em códigos C.
 15. **[exercicios/](src/exercicios)**: Exercícios de aplicação e leitura/escrita de arquivos.
 
-### 🌐 Pastas Globais para Bibliotecas C:
-* **`include/`**: Contém os arquivos de cabeçalho C (`.h`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h`, `clog.h`, `lib.h` e a subpasta `curl/`.
+### 🌐 Pastas Globais para Bibliotecas C/C++:
+* **`include/`**: Contém os arquivos de cabeçalho C/C++ (`.h` / `.hpp`), como o `sqlite3.h`, `mylib.h`, `worker.h`, `worker2.h`, `clog.h`, `lib.h`, `minha-classe.hpp` e a subpasta `curl/`.
 * **`include/lib/`**: Contém os arquivos de código-fonte C compilados nativamente (`sqlite3.c`).
 * **`lib/`**: Contém as bibliotecas externas do cURL para Windows MinGW (`libcurl.dll.a`, `libcurl.a`, etc.).
 * **`build_files/`**: Pasta que centraliza todos os scripts individuais de build numerados.
@@ -38,7 +38,7 @@ Os arquivos de código fonte estão organizados dentro da pasta `src/` e dividid
 
 O projeto possui um despachante dinâmico principal (`build.zig`) e vários arquivos de build numerados de acordo com o progresso dos estudos. Cada script configura uma parte específica do aprendizado:
 
-* **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 17).
+* **`build.zig`**: Despachante raiz dinâmico. Permite trocar qual exercício rodar passando `-Dexercicio=N` (padrão: exercício 20).
 * **`build_files/build-01-testes-integracao.zig`**: Configura e roda os testes de integração do projeto.
 * **`build_files/build-02-integracao-libc.zig`**: Compila exemplos que ligam e chamam recursos da LibC.
 * **`build_files/build-03-usar-codigo-c-no-zig.zig`**: Traduz e compila arquivos `.c` e `.h` locais para serem importados no Zig.
@@ -56,9 +56,12 @@ O projeto possui um despachante dinâmico principal (`build.zig`) e vários arqu
 * **`build_files/build-15-gerenciamento-memoria-fronteiras.zig`**: Compilação e testes de limites/segurança de alocação de memória FFI.
 * **`build_files/build-16-wrapper_idiomatico_de_biblioteca_c.zig`**: Encapsulamento prático e isolamento completo de uma biblioteca de logs em C (`clog`) por baixo de uma API amigável em Zig.
 * **`build_files/build-17-criando_um_wrapper_idiomatico.zig`**: Compilação de uma biblioteca estática em C (`lib.c`) e sua linkagem com o executável Zig correspondente.
+* **`build_files/build-18-exportando_funcoes_zig_para_c.zig`**: Compilação de funções e tipos estruturados do Zig como uma biblioteca dinâmica (`.dll`/`.lib`) para consumo por código C externo.
+* **`build_files/build-19-chamando_zig_a_partir_de_c.zig`**: Compilação de executável em C (`main.c`) linkado dinamicamente com a DLL do Zig (`ziglib.dll`).
+* **`build_files/build-20-integracao_com_c_mais_mais.zig`**: Compilação de classes C++ e criação de wrapper compatível com o FFI do Zig (linkado com a C++ Standard Library `libc++`).
 
 ### Como rodar:
-* Para rodar o exercício atual via roteador (padrão 17):
+* Para rodar o exercício atual via roteador (padrão 20):
   ```powershell
   zig build run
   ```
@@ -68,7 +71,7 @@ O projeto possui um despachante dinâmico principal (`build.zig`) e vários arqu
   ```
 * Para rodar um build diretamente via arquivo:
   ```powershell
-  zig build --build-file build_files/build-17-criando_um_wrapper_idiomatico.zig run
+  zig build --build-file build_files/build-20-integracao_com_c_mais_mais.zig run
   ```
 
 ---
