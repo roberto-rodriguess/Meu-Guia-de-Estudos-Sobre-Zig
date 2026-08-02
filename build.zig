@@ -22,13 +22,14 @@ const build_19 = @import("build_files/build-19-chamando_zig_a_partir_de_c.zig");
 const build_20 = @import("build_files/build-20-integracao_com_c_mais_mais.zig");
 const build_21 = @import("build_files/build-21-gerenciamento_de_memoria_atraves_de_fronteiras.zig");
 const build_22 = @import("build_files/build-22-leitura_teclado_nativa.zig");
+const build_23 = @import("build_files/build-23-integrando_com_sq_lite.zig");
 
 pub fn build(b: *std.Build) void {
-    // Permite selecionar qual exercício rodar. O padrão é o 22.
+    // Permite selecionar qual exercício rodar. O padrão é o 23.
     const exec_num = b.option(
         u32, "exercicio",
-        "Seleciona o build do exercicio (1-22)"
-    ) orelse 22;
+        "Seleciona o build do exercicio (1-23)"
+    ) orelse 23;
 
     switch (exec_num) {
         1 => build_01.build(b),
@@ -53,8 +54,9 @@ pub fn build(b: *std.Build) void {
         20 => build_20.build(b),
         21 => build_21.build(b),
         22 => build_22.build(b),
+        23 => build_23.build(b),
         else => {
-            std.debug.print("Exercício {d} inválido. Escolha de 1 a 22.\n", .{exec_num});
+            std.debug.print("Exercício {d} inválido. Escolha de 1 a 23.\n", .{exec_num});
         },
     }
 }
